@@ -35,7 +35,7 @@ ngrok http 3000
 
 or 
 
-ngrok http --url=donte.ngrok.io 80
+ngrok http --url=YOUR.DOMAIN.ngrok.io 80
 ```
 
 Ngrok will output the origin it has created for your tunnel, eg `https://9a20-38-99-100-7.ngrok.io`. You'll need to use this across your Zoom App configuration in the Zoom Marketplace (web) build flow (see below).
@@ -217,6 +217,18 @@ The backend is a NodeJS/Express server. The routes include:
 - Routes for In-client OAuth add flow: authorize and on authorize
 - Routes for the 3rd Party OAuth flow (optional; example using an example Auth0 application)
 
+| Route Type | URL |  Description |
+| --- | --- | --- |
+| Proxy (External Browser) | https://YOUR.DOMAIN.ngrok.io/api/zoomapp/proxy | This is the proxy for your app landing page |
+| Userinfo | https://YOUR.DOMAIN.ngrok.io/api/zoomapp/proxy#/userinfo | A proxy for the Zoom REST API - adds user access token and calls Zoom API from the server |
+| Auth Route | https://YOUR.DOMAIN.ngrok.io/api/zoomapp/auth | A proxy for the Zoom REST API - adds user access token and calls Zoom API from the server |
+| Install Route | https://YOUR.DOMAIN.ngrok.io/api/zoomapp/install | Routes for the traditional/web-based add flow: install and authenticate |
+| InClient Home Route | https://YOUR.DOMAIN.ngrok.io/api/zoomapp/home | A home route to initialize a cookie-based session for embedded browser users |
+| Authorize | https://YOUR.DOMAIN.ngrok.io/api/zoomapp/authorize | Routes for In-client OAuth add flow: authorize and on authorize |
+| onAuthorized (**POST**) | https://YOUR.DOMAIN.ngrok.io/api/zoomapp/onauthorized | Route for In-client OAuth add flow: authorize and on authorize|
+| Ngrok Web Interface | http://127.0.0.1:4040 | A real-time interface for monitoring traffic and responses between your service and upstream servers.|
+
+
 #### Database
 
 Redis:
@@ -246,3 +258,8 @@ The third party authentication example is optional - if you skip these steps, pl
 ## What do I do next?
 
 Start building your app! You can check out the [Zoom Apps developer docs](https://developers.zoom.us/docs/zoom-apps/) for more information on the JS SDK. You can also explore the [Zoom REST API](https://developers.zoom.us/docs/api/) or use the third party OAuth to call a different API.
+
+
+
+
+

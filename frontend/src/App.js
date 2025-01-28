@@ -175,6 +175,8 @@ function App() {
 
   if (isZoom === null) {
     // Render a loading spinner or placeholder while determining the environment
+
+    console.log("Detecting environment...");
     return (
       <div className="App">
         <p>Detecting environment...</p>

@@ -32,6 +32,10 @@ Zoom Apps do not support localhost, and must be served over https.  To develop l
 
 ```bash
 ngrok http 3000
+
+or 
+
+ngrok http --url=donte.ngrok.io 80
 ```
 
 Ngrok will output the origin it has created for your tunnel, eg `https://9a20-38-99-100-7.ngrok.io`. You'll need to use this across your Zoom App configuration in the Zoom Marketplace (web) build flow (see below).

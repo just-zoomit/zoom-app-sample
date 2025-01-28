@@ -248,20 +248,12 @@ module.exports = {
       '\n'
     )
     try {
-      // 1. Decrypt the Zoom App context header, and send response that this is not Zoom 
-      // if (!req.headers['x-zoom-app-context']) {
-      //   throw new Error('x-zoom-app-context header is required')
-      // }
-
+      // 1. Decrypt the Zoom App context header
       if (!req.headers['x-zoom-app-context']) {
-        // Send a JSON response indicating the error
-        return res.status(400).json({
-          success: false,
-          error: 'x-zoom-app-context header is required',
-        });
+        throw new Error('x-zoom-app-context header is required')
       }
 
-      const decryptxedAppContext = zoomHelpers.decryptZoomAppContext(
+      const decryptedAppContext = zoomHelpers.decryptZoomAppContext(
         req.headers['x-zoom-app-context'],
         process.env.ZOOM_APP_CLIENT_SECRET
       )
